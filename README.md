@@ -2,11 +2,11 @@
 1) Instalar Virtual Env:
     pip install virtualenv
 2) Crear entorno:
-    python3 -m venv entorno
-    ó
-    python -m venv entorno
-    ó
-    py -m venv entorno
+    - python3 -m venv entorno
+      ó
+    - python -m venv entorno
+     ó
+    - py -m venv entorno
 3) Activa el entorno:
     .\entorno\Scripts\activate   
 4) Instalar Django:
