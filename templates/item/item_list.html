@@ -23,6 +23,7 @@
                             <th>Total de unidades stock </th>
                             <th>Precio de costo</th>
                             <th>Total</th>
+                            <th>Responsable</th>
                             <th>Opciones</th>
                           </tr>
                     </thead>
@@ -30,7 +31,7 @@
                 <tbody>
                     {% for item in object_list %}
                     <tr>
-                      <td> {{ item.inventario.fecha_inventario }}</td>
+                      <td> {{ item.inventario.fecha_inventario }}</td>                      
                       <td> {{ item.nro_item }}</td>
                       <td> {{ item.articulo.codigo_sku }} </td>
                       <td> {{ item.stock_fisico }} </td>
@@ -38,6 +39,8 @@
                       <td> {{ item.total_unidades_stock }} </td>
                       <td> {{ item.precio_costo }} </td>
                       <td> {{ item.total_item }} </td>
+                      <td> {{ item.responsable_linea }}</td>
+
                       <td>
                         <a href="{% url 'item_update' pk=item.pk %}" class="btn btn-warning btn-sm">Editar</a>
                         <a href="{% url 'item_delete' pk=item.pk %}" class="btn btn-danger btn-sm">Eliminar</a>

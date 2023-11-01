@@ -6,15 +6,10 @@ class ItemsForm(forms.ModelForm):
         queryset=Inventario.objects.all(),
         widget=forms.Select(attrs={'class': 'form-select'}),
     )
-
-    articulo = forms.ModelChoiceField(
-        queryset=Articulo.objects.all(),
-        widget=forms.Select(attrs={'class': 'form-select'}),
-    )
-
+    
     class Meta:
         model = ItemInventario
-        fields = ['inventario', 'nro_item', 'articulo', 'stock_fisico', 'devoluciones_pendientes', 'total_unidades_stock', 'precio_costo', 'total_item']
+        fields = ['inventario', 'nro_item', 'articulo', 'stock_fisico', 'devoluciones_pendientes', 'total_unidades_stock', 'precio_costo', 'total_item', 'responsable_linea']
         widgets = {
             'nro_item': forms.NumberInput(attrs={'class': 'form-control'}),
             'stock_fisico': forms.NumberInput(attrs={'class': 'form-control'}),

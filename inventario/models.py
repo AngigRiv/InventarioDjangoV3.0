@@ -1,9 +1,14 @@
+from getpass import getuser
+from urllib import request
 from django.contrib.auth.models import AbstractUser
 import uuid
 from django.db import models
 from django.utils.translation import gettext_lazy as _
 from .manager import CustomUserManager
 from django.conf import settings
+from django.contrib.auth.models import User  # Importa el modelo de usuario de Django o tu propio modelo de usuario
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth import get_user
 
 class Empresa(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
@@ -111,12 +116,28 @@ class ItemInventario(models.Model):
     total_unidades_stock = models.DecimalField(max_digits=12, decimal_places=2)
     precio_costo = models.DecimalField(max_digits=12, decimal_places=2)
     total_item = models.DecimalField(max_digits=12, decimal_places=2)
+     # Agrega el campo responsable_linea
+    responsable_linea = models.ForeignKey(settings.AUTH_USER_MODEL,on_delete=models.CASCADE,related_name='items_inventario',)    
+    def is_responsible_for_item(self, user):
+        return user == self.responsable_linea
+
+    def is_responsible_for_item(self, user):
+        return user == self.responsable_linea
+    
+    def save(self, *args, **kwargs):
+        request = kwargs.pop('request', None)  # Get the request object from kwargs
+        user = request.user if request else None
+        super(ItemInventario, self).save(*args, **kwargs)
+
+    class Meta:
+        unique_together = ('inventario', 'articulo', 'responsable_linea')
 
 class Usuario(AbstractUser):
     username= None
     email = models.EmailField(_("email address"), unique=True)
     fullname = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=150, null=True)
+    
     objects = CustomUserManager()
       
     USERNAME_FIELD = "email"
