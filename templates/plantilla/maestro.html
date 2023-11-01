@@ -11,6 +11,7 @@
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@7.1.2/dist/style.min.css" rel="stylesheet" />
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     </head>
     <body class="sb-nav-fixed">
         <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -30,10 +31,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#!">Settings</a></li>
-                        <li><a class="dropdown-item" href="#!">Activity Log</a></li>
-                        <li><hr class="dropdown-divider" /></li>
-                        <li><a class="dropdown-item" href="{% url 'logout'%}">Cerrar Sesion</a></li>
+                        <li><a class="dropdown-item" href="{% url 'logout'%}">Cerrar Sesión</a></li>
                     </ul>
                 </li>
             </ul>
@@ -44,22 +42,22 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <a class="nav-link" href="{%url 'index'%}">
-                                <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                                <div class="sb-nav-link-icon"><i class="fa-sharp fa-light fa-house"></i></div>
                                 Inicio
                             </a>
                             <div class="sb-sidenav-menu-heading">Registros Principales
                                 <a class="nav-link" href="{% url 'inventario_a_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-packing"></i></div>
                                     Inventario
                                 </a>
                                 <a class="nav-link" href="{% url 'item_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-clipboard-list"></i></div>
                                     Items de inventario
                                 </a>
                             </div>
                             <div class="sb-sidenav-menu-heading">Registros de Propiedades y Productos
                                 <a class="nav-link" href="{% url 'articulo_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-boxes-stacked"></i></div>
                                     Articulos
                                 </a>
                                 <a class="nav-link" href="{% url 'marca_list'%}">
@@ -73,30 +71,30 @@
                             </div>
                             <div class="sb-sidenav-menu-heading">Registros de Líneas y Sublíneas
                                 <a class="nav-link" href="{% url 'linea_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-arrow-up-right-from-square"></i></div>
                                     Linea de articulos
                                 </a>
                                 <a class="nav-link" href="{% url 'sublinea_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-sharp fa-light fa-repeat"></i></div>
                                     Sublinea de articulos
                                 </a>
                             </div>
                             <div class="sb-sidenav-menu-heading">Otros Registros
                                 <a class="nav-link" href="{% url 'empresa_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-building"></i></div>
                                     Empresas
                                 </a>
                                 <a class="nav-link" href="{% url 'sucursal_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-shop"></i></div>
                                     Sucursales
                                 </a>
                                 <a class="nav-link" href="{% url 'personal_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-sharp fa-light fa-user-group"></i></div>
                                     Personales
                                 </a>
                                 
                                 <a class="nav-link" href="{% url 'grupo_list'%}">
-                                    <div class="sb-nav-link-icon"><i class="fas fa-table"></i></div>
+                                    <div class="sb-nav-link-icon"><i class="fa-solid fa-gopuram"></i></div>
                                     Grupos de proveedores
                                 </a>
                             </div>
