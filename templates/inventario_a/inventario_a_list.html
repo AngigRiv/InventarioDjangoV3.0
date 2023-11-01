@@ -1,0 +1,63 @@
+{% extends 'plantilla/maestro.html' %}
+{{ form.hora_inicio }}
+{{ form.hora_fin }}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Inventario</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Lista de Inventarios
+            <a class="btn btn-primary col-2 btn-sm" href="{% url 'inventario_a_create' %}"> Agregar  </a>
+        </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                             <th>Empresa </th>
+                            <th>FechaInventario</th>
+                            <th># Inventario</th>
+                            <th>HoraInicio</th>
+                            <th>HoraFinal</th>
+                            <th>Total Inv.</th>
+                            <th>Estado</th>
+                            <th>CreadPor</th>
+                            <th>CerradoPor</th>              
+                            <th>FechaCreación</th>
+                            <th>Personal </th>
+                            <th>Sucursal </th>
+                            <th>Opciones</th>
+                          </tr>
+                    </thead>
+                 
+                <tbody>
+                    {% for inventario_a in object_list %}
+                    <tr>     
+                      <td>{{ inventario_a.empresa.razon_social }}</td>
+                      <td>{{ inventario_a.fecha_inventario }}</td>
+                      <td>{{ inventario_a.nro_inventario }}</td>
+                      <td>{{ inventario_a.hora_inicio }}</td>
+                      <td>{{ inventario_a.hora_fin}}</td>
+                      <td>{{ inventario_a.total_inventario }}</td>
+                      <td>{{ inventario_a.get_estado_display}}</td>  
+                      <td>{{ inventario_a.creado_por }}</td>
+                      <td>{{ inventario_a.cerrado_por }}</td>
+                      <td>{{ inventario_a.fecha_creacion }}</td>
+                      <td>{{ inventario_a.personal.nombre_personal }}</td>
+                      <td>{{ inventario_a.sucursal.nombre_comercial }}</td>
+                      <td>
+                        <a href="{% url 'inventario_a_update' pk=inventario_a.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'inventario_a_delete' pk=inventario_a.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

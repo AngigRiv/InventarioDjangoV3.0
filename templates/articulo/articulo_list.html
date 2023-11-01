@@ -1,0 +1,58 @@
+{% extends 'plantilla/maestro.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Articulos</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Articulos
+            <a class="btn btn-primary col-2 btn-sm" href="{% url 'articulo_create' %}"> Agregar  </a>
+        </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th>Unidad de Medida </th>
+                            <th>Grupo </th>
+                            <th>Línea </th>
+                            <th>Sublínea </th>
+                            <th>Empresa </th>
+                            <th>Compra</th>
+                            <th>Reparto</th>
+                            <th>Marca</th>
+                            <th>Opciones</th>
+                          </tr>
+                    </thead>
+                 
+                <tbody>
+                    {% for articulo in object_list %}
+                    <tr>
+                      <td>{{ articulo.codigo_sku }}</td>
+                      <td>{{ articulo.descripcion }}</td>
+                      <td> {{ articulo.unidad_medida.unidad_nombre }} </td>
+                      <td>{{ articulo.grupo.codigo_grupo }}</td>
+                      <td>{{ articulo.linea.codigo_linea }}</td>
+                      <td>{{ articulo.sublinea.codigo_sublinea  }}</td>
+                      <td>{{ articulo.empresa.razon_social }}</td>
+                      <td>{{ articulo.factor_compra }}</td>
+                      <td>{{ articulo.factor_reparto }}</td>
+                      <td>{{ articulo.marca.marca_nombre }}</td>
+                      <td>
+                        <a href="{% url 'articulo_update' pk=articulo.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'articulo_delete' pk=articulo.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

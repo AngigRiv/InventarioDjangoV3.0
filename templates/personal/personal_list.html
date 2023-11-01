@@ -1,0 +1,48 @@
+{% extends 'plantilla/maestro.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Personales</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Lista de Personales
+            <a class="btn btn-primary col-2 btn-sm" href="{% url 'personal_create' %}"> Agregar  </a>
+        </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Tipo de Doc </th>
+                            <th>Numero de Doc </th>
+                            <th>Empresa</th>
+                            <th>Opciones</th>
+                          </tr>
+                    </thead>
+                 
+                <tbody>
+                    {% for personal in object_list %}
+                    <tr>
+                      <td>{{ personal.nombre_personal }}</td>
+                      <td>{{ personal.direccion_personal }}</td>
+                      <td> {{ personal.tipo_documento|get_tipo_documento }} </td>
+                      <td>{{ personal.nro_documento }}</td>
+                      <td>{{ personal.empresa.razon_social}}</td>
+                      <td>
+                        <a href="{% url 'personal_update' pk=personal.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'personal_delete' pk=personal.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base_generic.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="d-flex p-2">
+    <div>
+        <h2>Iniciar Sessión</h2>
+        <form method="POST">
+            <div class = "form-outline mb-4">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type = "submit" class="btn btn-primary btn-block mb-4">Entrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
