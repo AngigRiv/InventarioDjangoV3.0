@@ -16,4 +16,5 @@ urlpatterns = [
     path('lineas/', include('lineas.urls')),
     path('sublineas/', include('sublineas.urls')),
     path('articulos/', include('articulos.urls')),
+    path('items/', include('items.urls')),
 ]

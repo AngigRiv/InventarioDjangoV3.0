@@ -1,0 +1,54 @@
+{% extends 'plantilla/maestro.html' %}
+{% load custom_filters %}
+{% load static %}
+{% block content %}
+<main>
+    <div class="container-fluid px-4">
+        <h1 class="mt-4">Items de Inventario</h1>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Articulos
+            <a class="btn btn-primary col-2 btn-sm" href="{% url 'item_create' %}"> Agregar  </a>
+        </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Inventario</th>
+                            <th># Item</th>
+                            <th>Articulo</th>
+                            <th>Stock físico </th>
+                            <th>Devoluciones pendientes</th>
+                            <th>Total de unidades stock </th>
+                            <th>Precio de costo</th>
+                            <th>Total</th>
+                            <th>Opciones</th>
+                          </tr>
+                    </thead>
+                 
+                <tbody>
+                    {% for item in object_list %}
+                    <tr>
+                      <td> {{ item.inventario.fecha_inventario }}</td>
+                      <td> {{ item.nro_item }}</td>
+                      <td> {{ item.articulo.codigo_sku }} </td>
+                      <td> {{ item.stock_fisico }} </td>
+                      <td> {{ item.devoluciones_pendientes }} </td>
+                      <td> {{ item.total_unidades_stock }} </td>
+                      <td> {{ item.precio_costo }} </td>
+                      <td> {{ item.total_item }} </td>
+                      <td>
+                        <a href="{% url 'item_update' pk=item.pk %}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{% url 'item_delete' pk=item.pk %}" class="btn btn-danger btn-sm">Eliminar</a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
