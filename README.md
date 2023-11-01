@@ -15,7 +15,7 @@
    - pip install mysqlclient pymysql
 6) Migraciones:
    - python manage.py makemigrations inventario
-   - python manage.py makemigrations inventario
+   - python manage.py makemigrations 
    - python manage.py migrate inventario 0011 --fake
    - python manage.py migrate inventario
    - python manage.py migrate
