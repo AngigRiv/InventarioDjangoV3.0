@@ -33,3 +33,12 @@ class ItemsForm(forms.ModelForm):
 
         # Personalizamos la representación de las opciones del campo articulo
         self.fields['articulo'].label_from_instance = lambda obj: f"{obj.codigo_sku}"
+
+    def clean(self):
+        cleaned_data = super().clean()
+        inventario = cleaned_data.get('inventario')
+        articulo = cleaned_data.get('articulo')
+
+        # Verifica si ya existe un registro con el mismo artículo en el mismo inventario
+        if ItemInventario.objects.filter(inventario=inventario, articulo=articulo).exists():
+            raise forms.ValidationError("Este artículo ya existe en el inventario.")

@@ -15,8 +15,19 @@ class ItemsListView(ListView):
 class ItemsCreateView(CreateView):
     model = ItemInventario
     form_class = ItemsForm
-    template_name = 'item/item_form.html' 
+    template_name = 'item/item_form.html'
     success_url = reverse_lazy('item_list')
+
+    def form_valid(self, form):
+        # Verificar nuevamente la unicidad de artículo en el inventario antes de guardar
+        inventario = form.cleaned_data.get('inventario')
+        articulo = form.cleaned_data.get('articulo')
+
+        if ItemInventario.objects.filter(inventario=inventario, articulo=articulo).exists():
+            form.add_error(None, "Este artículo ya existe en el inventario.")
+            return self.form_invalid(form)
+
+        return super().form_valid(form)
 
 class ItemsUpdateView(UpdateView):
     model = ItemInventario
