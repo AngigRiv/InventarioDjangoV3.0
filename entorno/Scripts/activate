@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\USS\IX CICLO\TALLER DE LENGUAJES DE PROGRAMACIÓN\otro\Inventario\entorno"
+VIRTUAL_ENV="C:\USS\IX CICLO\TALLER DE LENGUAJES DE PROGRAMACIÓN\otro\InventarioDjangoV3.0\entorno"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
