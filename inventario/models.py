@@ -51,12 +51,11 @@ class SublineaArticulo(models.Model):
     sublinea_descripcion = models.CharField(max_length=100)
     linea = models.ForeignKey(LineaArticulo, on_delete=models.CASCADE)
     estado = models.BooleanField(default=True)
-# voy a hacer de este , este mejor mas chiki
 
 class UnidadMedida(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,unique=True)
     unidad_nombre = models.CharField(max_length=150)
-# me paltie hare de este nomas
+
 class Marca(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     codigo_marca = models.CharField(max_length=14)
@@ -79,7 +78,6 @@ class Articulo(models.Model):
   
 class Inventario(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False,unique=True)
-    # empresa= models.ForeignKey(Empresa, on_delete=models.CASCADE)
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE)
     sucursal = models.ForeignKey(Sucursal, on_delete=models.CASCADE)
     fecha_inventario = models.DateTimeField()
@@ -88,7 +86,6 @@ class Inventario(models.Model):
     hora_inicio = models.TimeField()  # Formato "hh:mm AM/PM"
     hora_fin = models.TimeField()
     total_inventario = models.DecimalField(max_digits=12, decimal_places=2)
-    # Cambiar el campo "estado" a un campo de elección (ChoiceField)
     ESTADOS = (
         ('P', 'Pending'),
         ('IP', 'In Progress'),
@@ -101,7 +98,6 @@ class Inventario(models.Model):
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     
     class Meta:
- # Define la restricción única
         unique_together = ('fecha_inventario', 'empresa', 'sucursal')
 
 
@@ -116,14 +112,11 @@ class ItemInventario(models.Model):
     precio_costo = models.DecimalField(max_digits=12, decimal_places=2)
     total_item = models.DecimalField(max_digits=12, decimal_places=2)
 
-# no se crea por que ya el sistema ya lo tiene pero igual se puede usar xd
 class Usuario(AbstractUser):
     username= None
     email = models.EmailField(_("email address"), unique=True)
     fullname = models.CharField(max_length=100, null=True)
     address = models.CharField(max_length=150, null=True)
-   # responsable_linea = models.ForeignKey(Personal, on_delete=models.SET_NULL, null=True, related_name='usuarios_responsables')
-
     objects = CustomUserManager()
       
     USERNAME_FIELD = "email"
